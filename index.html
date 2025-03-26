@@ -3,68 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Los Gativerde - Hierba Gatera Natural</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Los Gativerde | Hierba gatera natural para gatos felices</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --verde-claro: #A8D5BA;
+      --verde-oscuro: #4E7C59;
+      --beige: #FFF9F0;
+      --gris: #333;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: 'Outfit', sans-serif;
-      margin: 0;
-      background: #f4f4f9;
-      color: #333;
+      background: var(--beige);
+      color: var(--gris);
+      line-height: 1.6;
     }
     header {
-      background-color: #79a96b;
+      background: var(--verde-oscuro);
       color: white;
-      padding: 2rem;
       text-align: center;
+      padding: 2rem 1rem;
     }
     header h1 {
-      margin: 0;
       font-size: 2.5rem;
     }
+    header p {
+      font-size: 1.2rem;
+    }
     nav {
-      background-color: #4e7c59;
+      background: var(--verde-claro);
       display: flex;
       justify-content: center;
       gap: 2rem;
-      padding: 1rem 0;
+      padding: 1rem;
     }
     nav a {
-      color: white;
+      color: var(--gris);
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s;
     }
-    section.hero {
-      padding: 3rem;
-      text-align: center;
+    nav a:hover {
+      color: var(--verde-oscuro);
+    }
+    .hero {
       background: url('https://images.unsplash.com/photo-1585241740589-3d5525b6ac6e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
+      padding: 5rem 2rem;
+      text-align: center;
     }
-    section.hero h2 {
-      font-size: 2rem;
+    .hero h2 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-    section.hero p {
+    .hero p {
       font-size: 1.2rem;
     }
-    section.content {
-      padding: 2rem 10%;
+    .section {
+      padding: 3rem 10%;
+    }
+    .section h3 {
+      font-size: 1.8rem;
+      color: var(--verde-oscuro);
+      margin-bottom: 1rem;
     }
     .card {
       background: white;
-      padding: 1.5rem;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       margin-bottom: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     footer {
-      background-color: #4e7c59;
+      background: var(--verde-oscuro);
       color: white;
       text-align: center;
       padding: 2rem;
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
@@ -75,34 +95,40 @@
   </header>
 
   <nav>
-    <a href="#">Inicio</a>
+    <a href="#inicio">Inicio</a>
     <a href="#productos">Productos</a>
-    <a href="#sobre">Sobre Nosotros</a>
+    <a href="#equipo">Sobre nosotros</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
-  <section class="hero">
+  <section class="hero" id="inicio">
     <h2>Conecta a tu gato con la naturaleza</h2>
-    <p>Ofrecemos semillas de hierba gatera 100% natural, cultivadas con amor.</p>
+    <p>Hierba gatera premium, segura y divertida para tu felino.</p>
   </section>
 
-  <section class="content">
-    <div class="card" id="productos">
-      <h3>🌿 Nuestra hierba gatera</h3>
-      <p>Semillas seleccionadas para el bienestar y entretenimiento de tu felino. Fáciles de cultivar en casa, seguras y naturales.</p>
+  <section class="section" id="productos">
+    <h3>🌿 Nuestros productos</h3>
+    <div class="card">
+      <p>Ofrecemos semillas de hierba gatera seleccionadas, fáciles de cultivar y con todos los beneficios naturales para el juego, digestión y bienestar de tu gato.</p>
     </div>
-    <div class="card" id="sobre">
-      <h3>🐱 Quiénes somos</h3>
-      <p>Somos una empresa joven con una misión clara: acercar a los gatos domésticos a sus instintos naturales, promoviendo bienestar, juego y salud.</p>
+  </section>
+
+  <section class="section" id="equipo">
+    <h3>😺 Quiénes somos</h3>
+    <div class="card">
+      <p>Los Gativerde nace del amor por los gatos y el deseo de ofrecer productos naturales, sostenibles y seguros. Somos una empresa pequeña con grandes sueños verdes.</p>
     </div>
-    <div class="card" id="contacto">
-      <h3>📬 Contacto</h3>
-      <p>¿Tienes dudas o quieres distribuir nuestros productos? Escríbenos a <strong>hola@losgativerde.es</strong></p>
+  </section>
+
+  <section class="section" id="contacto">
+    <h3>📧 Contacto</h3>
+    <div class="card">
+      <p>Escríbenos a <strong>hola@losgativerde.es</strong> si quieres distribuir nuestros productos o tienes preguntas sobre nuestra hierba gatera.</p>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Los Gativerde. Todos los derechos reservados.</p>
+    <p>&copy; 2025 Los Gativerde. Diseño inspirado por la naturaleza y los bigotes felices.</p>
   </footer>
 </body>
 </html>
