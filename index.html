@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Los Gativerde | Hierba gatera natural para gatos felices</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://js.stripe.com/v3/"></script>
   <style>
     :root {
       --verde-claro: #A8D5BA;
@@ -25,101 +24,486 @@
       color: var(--gris);
       line-height: 1.6;
     }
-    header, nav, .hero, .section, footer {
-      padding: 2rem;
+    header {
+      background: var(--verde-oscuro);
+      color: white;
       text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1600&q=80') center/cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    header h1 {
+      font-size: 3rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    header p {
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    nav {
+      background: var(--verde-claro);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     nav a {
-      margin: 0 1rem;
+      color: var(--gris);
       text-decoration: none;
-      font-weight: bold;
-      color: var(--verde-oscuro);
+      font-weight: 600;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
     }
-    .btn-pago {
+    nav a:hover {
+      color: white;
       background: var(--verde-oscuro);
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1585241740589-3d5525b6ac6e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--naranja);
       color: white;
       padding: 1rem 2rem;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s;
-      margin: 3rem auto 0;
-      display: block;
-      text-align: center;
+      margin: 0.5rem;
     }
-    .btn-pago:hover {
-      background: #3a5d45;
+    .btn:hover {
+      background: #e6952b;
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-    .quienes-somos {
-      background: white;
-      padding: 5rem 2rem;
-      text-align: center;
-      max-width: 900px;
-      margin: 5rem auto;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    .section {
+      padding: 5rem 10%;
     }
-    .quienes-somos h2 {
-      font-size: 2.5rem;
+    .section h3 {
+      font-size: 2.2rem;
+      color: var(--verde-oscuro);
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .section h3::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--naranja);
+      margin: 1rem auto;
+    }
+    .card {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      margin-bottom: 3rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+    .card h4 {
+      font-size: 1.5rem;
       color: var(--verde-oscuro);
       margin-bottom: 1.5rem;
     }
-    .quienes-somos p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
-    .quienes-somos img {
-      width: 100%;
-      max-width: 600px;
+    .product-card {
+      background: white;
       border-radius: 15px;
-      margin-top: 2rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
     }
-    .fondo {
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .product-img {
+      height: 250px;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      padding: 5rem 2rem;
-      color: white;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     }
-    #inicio.fondo {
-      background-image: url('https://images.unsplash.com/photo-1618826411644-d7103f5249d1?auto=format&fit=crop&w=1600&q=80');
+    .product-info {
+      padding: 1.5rem;
     }
-    #beneficios.fondo {
-      background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=1600&q=80');
-    }
-    #testimonios.fondo {
-      background-image: url('https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=1600&q=80');
-    }
-    #contacto.fondo {
-      background-image: url('https://images.unsplash.com/photo-1560114928-40f1f1eb26a9?auto=format&fit=crop&w=1600&q=80');
-    }
-    .productos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-      padding: 2rem;
-    }
-    .producto {
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
-    .producto img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-    .producto h3 {
+    .product-info h4 {
+      font-size: 1.3rem;
       margin-bottom: 0.5rem;
       color: var(--verde-oscuro);
     }
-    .producto p {
-      color: #555;
+    .product-info p {
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--naranja);
+      margin: 1rem 0;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .team-card {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .team-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      border: 5px solid var(--verde-claro);
+    }
+    .tab-container {
+      margin-top: 2rem;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid var(--verde-claro);
+      margin-bottom: 2rem;
+    }
+    .tab {
+      padding: 1rem 2rem;
+      cursor: pointer;
+      background: var(--beige);
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: var(--gris);
+      transition: all 0.3s;
+    }
+    .tab.active {
+      background: var(--verde-oscuro);
+      color: white;
+    }
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      transition: border 0.3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--verde-oscuro);
+      outline: none;
+    }
+    footer {
+      background: var(--verde-oscuro);
+      color: white;
+      text-align: center;
+      padding: 3rem;
+      margin-top: 3rem;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    .social-links a:hover {
+      color: var(--naranja);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--naranja);
+      margin-bottom: 0.5rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .benefit-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .benefit-icon {
+      font-size: 3rem;
+      color: var(--verde-oscuro);
+      margin-bottom: 1rem;
+    }
+    .testimonials {
+      margin-top: 3rem;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: """;
+      font-size: 5rem;
+      color: var(--verde-claro);
+      position: absolute;
+      top: 0;
+      left: 1rem;
+      line-height: 1;
+      opacity: 0.3;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 2rem 0;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .mission-vision {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .mission-card, .vision-card {
+      padding: 2rem;
+      border-radius: 15px;
+      color: white;
+    }
+    .mission-card {
+      background: var(--verde-oscuro);
+    }
+    .vision-card {
+      background: var(--naranja);
+    }
+    .mission-card h4, .vision-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .cta-section {
+      background: linear-gradient(rgba(78, 124, 89, 0.9), rgba(78, 124, 89, 0.9)), url('https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      border-radius: 15px;
+      margin: 3rem 0;
+    }
+    .cta-section h3 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .cta-section p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+    }
+    .faq-container {
+      margin-top: 2rem;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .faq-question {
+      background: var(--verde-claro);
+      padding: 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      background: white;
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .faq-answer.show {
+      padding: 1.5rem;
+      max-height: 500px;
+    }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: var(--verde-claro);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--verde-oscuro);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+    .left {
+      left: 0;
+    }
+    .right {
+      left: 50%;
+    }
+    .left::after {
+      right: -10px;
+    }
+    .right::after {
+      left: -10px;
+    }
+    .timeline-content {
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .timeline-date {
+      font-weight: 600;
+      color: var(--naranja);
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
@@ -132,88 +516,295 @@
     <a href="#inicio">Inicio</a>
     <a href="#productos">Productos</a>
     <a href="#beneficios">Beneficios</a>
-    <a href="#testimonios">Testimonios</a>
     <a href="#nosotros">Sobre nosotros</a>
     <a href="#contacto">Contacto</a>
   </nav>
-  <section id="inicio" class="fondo">
-    <h2>🌿 Conecta a tu gato con la naturaleza</h2>
-    <p>En Los Gativerde, creemos que los gatos merecen lo mejor de la naturaleza...</p>
-    <ul>
-      <li>Calidad garantizada</li>
-      <li>Bienestar felino</li>
-      <li>Compromiso ecológico</li>
-    </ul>
-    <p>👉 Explora nuestros productos y descubre cómo la hierba gatera puede transformar la vida de tu gato.</p>
+  <section class="hero" id="inicio">
+    <h2>Conecta a tu gato con la naturaleza</h2>
+    <p>Descubre nuestra línea premium de hierba gatera ecológica, cultivada con amor para la felicidad de tu felino</p>
+    <a href="#productos" class="btn">Ver productos</a>
+    <a href="#beneficios" class="btn btn-outline">Conoce los beneficios</a>
   </section>
-  <section id="productos">
-    <h2>🌿 Nuestra selección premium</h2>
-    <div class="productos-grid">
-      <div class="producto">
-        <img src="https://images.unsplash.com/photo-1609942738697-d84a04a164a0?auto=format&fit=crop&w=800&q=80" alt="Hierba Gatera Fresca">
-        <h3>Hierba Gatera Fresca</h3>
-        <p>Maceta lista para disfrutar, cultivada de forma ecológica. €9,99</p>
+  <section class="section">
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <p>Gatos que responden a la hierba gatera</p>
       </div>
-      <div class="producto">
-        <img src="https://images.unsplash.com/photo-1583337130417-3346a1c54f7c?auto=format&fit=crop&w=800&q=80" alt="Hierba Gatera Seca">
-        <h3>Hierba Gatera Seca</h3>
-        <p>Bolsa de 50g de hierba gatera de máxima calidad. €6,99</p>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <p>Natural y orgánica</p>
       </div>
-      <div class="producto">
-        <img src="https://images.unsplash.com/photo-1592194861164-9edffdfc3e08?auto=format&fit=crop&w=800&q=80" alt="Kit de Cultivo">
-        <h3>Kit de Cultivo</h3>
-        <p>Todo lo necesario para cultivar tu propia hierba gatera. €14,99</p>
+      <div class="stat-item">
+        <div class="stat-number">5K+</div>
+        <p>Gatos felices</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24h</div>
+        <p>Entrega express</p>
       </div>
     </div>
-    <button class="btn-pago" onclick="pagar('price_general')">Comprar ahora</button>
   </section>
-  <section id="beneficios" class="fondo">
-    <h2>¿Por qué la hierba gatera es esencial?</h2>
-    <p>🐾 Salud digestiva...</p>
-    <p>🎯 Estimulación mental...</p>
-    <p>💪 Ejercicio físico...</p>
-    <p>🧠 Desarrollo cognitivo...</p>
-    <p>💚 100% Natural...</p>
-    <p>🌍 Sostenibilidad...</p>
+  <section class="section" id="productos">
+    <h3>🌿 Nuestra selección premium</h3>
+    <div class="tab-container">
+      <div class="tabs">
+        <button class="tab active" onclick="openTab(event, 'todos')">Todos</button>
+        <button class="tab" onclick="openTab(event, 'frescos')">Frescos</button>
+        <button class="tab" onclick="openTab(event, 'secos')">Secos</button>
+        <button class="tab" onclick="openTab(event, 'kits')">Kits</button>
+      </div>
+      <div id="todos" class="tab-content active">
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854407944-b2f86f5b478e?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Hierba Gatera Fresca</h4>
+              <p>Maceta lista para disfrutar, cultivada de forma ecológica</p>
+              <div class="price">€9,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854273338-cbf078ec7071?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Hierba Gatera Seca Premium</h4>
+              <p>Bolsa de 50g de hierba gatera de máxima calidad</p>
+              <div class="price">€6,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854307949-e0b6fdea7368?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Kit de Cultivo Gativerde</h4>
+              <p>Todo lo necesario para cultivar tu propia hierba gatera en casa</p>
+              <div class="price">€14,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854372407-baba7fef6e51?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Spray de Hierba Gatera</h4>
+              <p>Para refrescar juguetes y rascadores</p>
+              <div class="price">€11,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854345137-df2ae6f4946c?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Juguete con Hierba Gatera</h4>
+              <p>Ratón de tela relleno de hierba gatera premium</p>
+              <div class="price">€8,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854372407-baba7fef6e51?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Snacks con Hierba Gatera</h4>
+              <p>Deliciosas galletas para gatos con un toque de hierba gatera</p>
+              <div class="price">€7,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="frescos" class="tab-content">
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854407944-b2f86f5b478e?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Hierba Gatera Fresca</h4>
+              <p>Maceta lista para disfrutar, cultivada de forma ecológica</p>
+              <div class="price">€9,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854273338-cbf078ec7071?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Hierba Gatera Fresca XL</h4>
+              <p>Maceta grande para hogares con varios gatos</p>
+              <div class="price">€14,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="secos" class="tab-content">
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854273338-cbf078ec7071?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Hierba Gatera Seca Premium</h4>
+              <p>Bolsa de 50g de hierba gatera de máxima calidad</p>
+              <div class="price">€6,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854372407-baba7fef6e51?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Spray de Hierba Gatera</h4>
+              <p>Para refrescar juguetes y rascadores</p>
+              <div class="price">€11,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="kits" class="tab-content">
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854307949-e0b6fdea7368?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Kit de Cultivo Gativerde</h4>
+              <p>Todo lo necesario para cultivar tu propia hierba gatera en casa</p>
+              <div class="price">€14,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596854345137-df2ae6f4946c?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="product-info">
+              <h4>Kit Premium Gativerde</h4>
+              <p>Kit de cultivo + juguete + spray de hierba gatera</p>
+              <div class="price">€24,99</div>
+              <a href="#" class="btn">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="testimonios" class="fondo">
-    <h2>Lo que dicen nuestros clientes</h2>
-    <blockquote>😻 "Mi gato Loki..." — María G.</blockquote>
-    <blockquote>💡 "Como veterinario..." — Dr. Carlos M.</blockquote>
-    <blockquote>🌱 "El kit de cultivo..." — Ana R.</blockquote>
+  <section class="section" id="beneficios">
+    <h3>🐾 Beneficios para tu gato</h3>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🌱</div>
+        <h4>Salud digestiva</h4>
+        <p>Ayuda a eliminar bolas de pelo de forma natural, mejorando el tránsito intestinal de tu gato.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <h4>Estimulación mental</h4>
+        <p>Proporciona enriquecimiento ambiental, reduciendo el estrés y la ansiedad en gatos indoor.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💪</div>
+        <h4>Ejercicio físico</h4>
+        <p>Fomenta el juego activo, ayudando a mantener un peso saludable y evitar el sedentarismo.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🧠</div>
+        <h4>Desarrollo cognitivo</h4>
+        <p>Estimula los instintos naturales de caza y exploración en gatos de todas las edades.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💚</div>
+        <h4>100% Natural</h4>
+        <p>Sin aditivos químicos, pesticidas ni conservantes artificiales. Solo lo mejor de la naturaleza.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌍</div>
+        <h4>Sostenible</h4>
+        <p>Cultivada con métodos ecológicos y envasada en materiales biodegradables.</p>
+      </div>
+    </div>
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/4IKwFhq5R8Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="testimonials">
+      <h3>😻 Lo que dicen nuestros clientes</h3>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>"Mi gato Loki era muy perezoso hasta que descubrimos la hierba gatera de Gativerde. Ahora juega como un cachorro y su digestión ha mejorado muchísimo."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Cliente satisfecho">
+            <div>
+              <strong>María G.</strong>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Como veterinario, recomiendo Gativerde a todos mis clientes. Es la única marca que garantiza pureza y calidad en sus productos de hierba gatera."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente satisfecho">
+            <div>
+              <strong>Dr. Carlos M.</strong>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"El kit de cultivo es perfecto para que mis hijos aprendan sobre naturaleza mientras cuidan de nuestro gato Simba. ¡Todo un éxito en casa!"</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente satisfecho">
+            <div>
+              <strong>Ana R.</strong>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section class="quienes-somos" id="nosotros">
-    <h2>Nuestra historia y valores</h2>
-    <p>🏡 Nuestra historia: Todo comenzó en 2023...</p>
-    <p>🌱 Nuestra misión: Proporcionar hierba gatera 100% natural...</p>
-    <p>🌟 Nuestra visión: Convertirnos en la marca líder en Europa...</p>
-    <img src="https://images.unsplash.com/photo-1622191362231-c95d142e05ee?auto=format&fit=crop&w=800&q=80" alt="Equipo Gativerde">
-  </section>
-  <section id="contacto" class="fondo">
-    <h2>¡Contáctanos hoy mismo!</h2>
-    <p>📧 info@gativerde.com</p>
-    <p>📞 946 417 026</p>
-    <p>📍 C/ Cocherito de Bilbao, 15, 48004 Bilbao (Vizcaya)</p>
-    <p>Horario de atención:</p>
-    <ul>
-      <li>Lunes a jueves: 9:00 a 14:30 y 15:30 a 20:00</li>
-      <li>Viernes: 9:00 a 14:00</li>
-    </ul>
-  </section>
-  <script>
-    function pagar(priceId) {
-      const stripe = Stripe("pk_test_1234567890abcdefghijk");
-      stripe.redirectToCheckout({
-        lineItems: [{price: priceId, quantity: 1}],
-        mode: 'payment',
-        successUrl: window.location.href + "?success=true",
-        cancelUrl: window.location.href + "?canceled=true"
-      }).then(function (result) {
-        if (result.error) {
-          alert(result.error.message);
-        }
-      });
-    }
-  </script>
-</body>
-</html>
+  <section class="section" id="nosotros">
+    <h3>🏡 Nuestra historia</h3>
+    <div class="mission-vision">
+      <div class="mission-card">
+        <h4>Misión</h4>
+        <p>Proporcionar hierba gatera 100% natural y productos innovadores que mejoren la calidad de vida de los gatos, fomentando su salud física y mental, mientras educamos a los dueños sobre sus beneficios.</p>
+      </div>
+      <div class="vision-card">
+        <h4>Visión</h4>
+        <p>Ser la marca líder en Europa en bienestar felino a través de la hierba gatera, expandiendo nuestro catálogo con productos sostenibles y colaborando con protectoras de animales.</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-date">2023</div>
+          <p>Nace la idea de Gativerde tras observar los beneficios de la hierba gatera en los gatos de un refugio local.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-date">Enero 2024</div>
+          <p>Primera cosecha experimental en un pequeño invernadero familiar en Valencia.</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-date">Junio 2024</div>
+          <p>Lanzamiento oficial con 3 productos: hierba fresca, seca y kit de cultivo.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-date">Septiembre 2024</div>
+          <p>Colaboración con 10 protectoras de animales y primeras ventas internacionales.</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-date">2025</div>
+          <p>Expansión de la línea de productos y apertura de cultivo ecológico certificado.</p>
+        </div>
+      </div>
+    </div>
+    <h3 style="margin-top: 5rem;">👥 Nuestro equipo</h3>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Fundadora" class="team-img">
+        <h4>Laura Martínez</h4>
+        <p>Fundadora & CEO</p>
+        <p>Bióloga especializada en botánica con una pasión por el bienestar animal.</p>
+      </div>
+      <div class="team-card">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Cultivo" class="team-img">
+        <h4>Javier López
